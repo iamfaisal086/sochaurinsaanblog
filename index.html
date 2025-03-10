@@ -1,47 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blogs.sochaurinsaan</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>sochaurinsaanblog.pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            text-align: center;
+        }
+
+        /* Header Styling */
+        header {
+            background:#000000 ;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .gallery-container {
+            padding-bottom: 60px; /* Footer ke liye space */
+        }
+
+        .image-wrapper {
+            width: 100%;
+            position: relative;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #ddd;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .image-wrapper img:hover {
+            transform: scale(1.05);
+        }
+
+        .text {
+            font-size: 16px;
+            color: #333;
+            margin-top: 5px;
+        }
+
+        /* Footer Styling */
+        footer {
+            background: #222;
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
 </head>
-<body class="bg-gray-100">
+<body>
 
-    <div class="max-w-6xl mx-auto p-5">
-        <h1 class="text-3xl font-bold text-center my-6">लेख</h1>
-        <div class="grid md:grid-cols-3 gap-6">
-            <!-- Blog 1 -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-dLlNUaHJBMs1bDib-qgxL8zJeJiI-GrvQdvRQjFWU58yBDjP_NXcEzcgeOKDLWefBUTmE98FALu0J9XcfbHUyrYU7pm7yeetJFxkbq2K1JBVWpnnYLjzqEge3Jvd03NkFeXQnORGfL6KHQ5vKmKtZa9ckMf8_F9hINl1dMbe8tO0MwViSch7P5zf4VwF/s1024/file-P2QxLDUhdZhCpMGHnRW34Z.webp" alt="AI" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">Artificial Intelligence: Future ya Dushman?</h2>
-                    
-                    <a href="blog1.html" class="text-red-600 font-bold mt-3 inline-block">Read More →</a>
-                </div>
-            </div>
+    <header>लेख</header>
 
-            <!-- Blog 2 -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="https://source.unsplash.com/400x250/?nature" alt="Environment" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">Paryavaran ki Raksha Kaise Karein?</h2>
-                    <p class="text-gray-600">Humein prakriti ka dhyan rakhna chahiye...</p>
-                    <a href="blog2.html" class="text-red-600 font-bold mt-3 inline-block">Read More →</a>
-                </div>
-            </div>
-
-            <!-- Blog 3 -->
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                <img src="https://source.unsplash.com/400x250/?books" alt="Education" class="w-full h-40 object-cover">
-                <div class="p-4">
-                    <h2 class="text-xl font-semibold">Shiksha Ka Mahatva</h2>
-                    <p class="text-gray-600">Nayi peedhi ke liye shiksha anivarya hai...</p>
-                    <a href="blog3.html" class="text-red-600 font-bold mt-3 inline-block">Read More →</a>
-                </div>
-            </div>
+    <div class="gallery-container">
+        <div class="image-wrapper">
+            <a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi-dLlNUaHJBMs1bDib-qgxL8zJeJiI-GrvQdvRQjFWU58yBDjP_NXcEzcgeOKDLWefBUTmE98FALu0J9XcfbHUyrYU7pm7yeetJFxkbq2K1JBVWpnnYLjzqEge3Jvd03NkFeXQnORGfL6KHQ5vKmKtZa9ckMf8_F9hINl1dMbe8tO0MwViSch7P5zf4VwF/s1024/file-P2QxLDUhdZhCpMGHnRW34Z.webp" target="_blank">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEglRoY3JyfRnrj99NUCLlPhpKxIJ4a5qu4dClfVvHvOXOdVJ1eDsTSKvkYB4jrSDS-8K2MRZxyvrmPO0fd5g1wFPpt2nl828PUHiHG9q8gzc1iRgAGu66NZ_95OcBE7rpcyLJDOJcvHaeuNNBY55LABBYRH7QeDrRrC46DxZ6mp3Ub1DklJNDhvanc_ymEG/s1600/blog.png" alt="Image 1">
+            </a>
+            <div class="text">Image 1 - Beautiful View</div>
         </div>
+
+        
     </div>
 
+    <footer>© All RightsReserved. <a href="https://sochaurinsaan.onrender.com/"
+    <div class="text">Sochaurinsaan</div></footer>
+
 </body>
-</html>
+    </html>
