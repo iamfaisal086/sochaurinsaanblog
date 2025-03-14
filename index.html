@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pastandfuture</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; transition: all 0.3s ease; }
+        body { background: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #2c3e50; color: white; padding: 15px; text-align: center; font-size: 24px; display: flex; justify-content: space-between; align-items: center; }
+        .menu-btn, .dark-mode-btn { background: none; border: none; color: white; font-size: 18px; cursor: pointer; }
+        .menu-btn { font-size: 24px; }
+        .search-bar { flex-grow: 1; margin: 0 15px; }
+        .search-bar input { width: 100%; padding: 8px; border-radius: 5px; border: none; font-size: 16px; }
+
+        /* ✅ Sidebar */
+        .sidebar { width: 250px; background: #34495e; color: white; padding: 15px; position: fixed; left: -250px; top: 0; height: 100%; transition: left 0.3s ease-in-out; }
+        .sidebar ul { list-style: none; margin-top: 20px; }
+        .sidebar ul li { padding: 10px; cursor: pointer; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+        .sidebar ul li:hover { background: #1abc9c; }
+
+        .container { margin: 20px auto; padding: 20px; max-width: 900px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .post { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
+        .post a { text-decoration: none; color: #2c3e50; font-weight: bold; }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 10px; margin-top: auto; }
+
+        /* ✅ Dark Mode */
+        .dark-mode { background: #1e1e1e; color: white; }
+        .dark-mode .container { background: #2c2c2c; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+        .dark-mode header, .dark-mode footer { background: #111; }
+    </style>
+</head>
+<body>
+
+<header>
+    <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search blogs..." onkeyup="searchPosts()">
+    </div>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">🌙</button>
+</header>
+
+<!-- ✅ Sidebar -->
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li onclick="closeSidebar()">Close ✖</li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+</div>
+
+<div class="container" id="blog-container"></div>
+
+<footer class="footer">© 2025 pastandfuture | All Rights Reserved</footer>
+
+<script>
+    async function loadBlogs() {
+        let response = await fetch("blog.json");
+        let posts = await response.json();
+        let blogContainer = document.getElementById("blog-container");
+        blogContainer.innerHTML = "";
+        posts.forEach(post => {
+            let postDiv = document.createElement("div");
+            postDiv.classList.add("post");
+            postDiv.innerHTML = `<h2><a href="blog.html?id=${post.id}">${post.title}</a></h2><p>${post.excerpt}</p>`;
+            blogContainer.appendChild(postDiv);
+        });
+    }
+
+    function searchPosts() {
+        let query = document.getElementById("searchInput").value.toLowerCase();
+        let blogContainer = document.getElementById("blog-container");
+        blogContainer.innerHTML = "";
+        fetch("blog.json").then(response => response.json()).then(posts => {
+            posts.forEach(post => {
+                if (post.title.toLowerCase().includes(query) || post.content.toLowerCase().includes(query)) {
+                    let postDiv = document.createElement("div");
+                    postDiv.classList.add("post");
+                    postDiv.innerHTML = `<h2><a href="blog.html?id=${post.id}">${post.title}</a></h2><p>${post.excerpt}</p>`;
+                    blogContainer.appendChild(postDiv);
+                }
+            });
+        });
+    }
+
+    function toggleSidebar() {
+        let sidebar = document.getElementById("sidebar");
+        sidebar.style.left = (sidebar.style.left === "0px") ? "-250px" : "0px";
+    }
+
+    function closeSidebar() {
+        document.getElementById("sidebar").style.left = "-250px";
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    }
+
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+    }
+
+    loadBlogs();
+</script>
+
+</body>
+</html>
