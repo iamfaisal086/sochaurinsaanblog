@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Welcome to My Blog",
+        "excerpt": "This is a simple yet beautiful blog layout.",
+        "content": "This is the full content of the blog post. It contains more details."
+    },
+    {
+        "id": 2,
+        "title": "How to Start Blogging",
+        "excerpt": "Blogging is a great way to share your thoughts.",
+        "content": "Detailed guide on how to start your own blog and make it successful."
+    },
+    {
+        "id": 3,
+        "title": "Best SEO Practices",
+        "excerpt": "SEO is crucial for blogging success.",
+        "content": "Everything you need to know about SEO and optimizing your blog."
+    }
+]
