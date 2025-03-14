@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #f4f4f4; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { margin: 20px auto; padding: 20px; max-width: 900px; background: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); }
+        .footer { background: #2c3e50; color: white; text-align: center; padding: 10px; margin-top: auto; }
+        .dark-mode { background: #1e1e1e; color: white; }
+        .dark-mode .container { background: #2c2c2c; box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="blog-title">Loading...</h1>
+    <p id="blog-content"></p>
+</div>
+
+<footer class="footer">© 2025 My Blog | All Rights Reserved</footer>
+
+<script>
+    async function loadBlogPost() {
+        let params = new URLSearchParams(window.location.search);
+        let postId = params.get("id");
+
+        let response = await fetch("blog.json");
+        let posts = await response.json();
+
+        let post = posts.find(p => p.id == postId);
+        if (post) {
+            document.getElementById("blog-title").textContent = post.title;
+            document.getElementById("blog-content").textContent = post.content;
+        } else {
+            document.getElementById("blog-title").textContent = "Blog Not Found";
+            document.getElementById("blog-content").textContent = "Sorry, this blog post does not exist.";
+        }
+    }
+
+    loadBlogPost();
+</script>
+
+</body>
+</html>
